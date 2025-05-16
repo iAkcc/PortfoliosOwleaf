@@ -1,390 +1,97 @@
-/* Estilos generales */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/* Estilos generales para la sección */
+section {
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-.gallery {
-    padding: 2rem;
-    text-align: center;
-}
-
-.gallery-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-}
-
+/* Contenedor de perfiles con scroll táctil */
 .profiles-container {
     display: flex;
-    /* Flexbox para alinear las tarjetas horizontalmente */
     gap: 1.5rem;
     padding: 1rem;
     overflow-x: auto;
-    /* Permite desplazamiento horizontal si hay muchas tarjetas */
     scroll-snap-type: x mandatory;
-    /* Mejora el desplazamiento en dispositivos móviles */
+    -webkit-overflow-scrolling: touch; /* Fundamental para iOS */
+    scroll-behavior: smooth;
+    width: 100%;
+    touch-action: pan-x; /* Permite solo desplazamiento horizontal */
+    overscroll-behavior-x: contain; /* Evita efectos de rebote no deseados */
+    scrollbar-width: none; /* Oculta scrollbar en Firefox */
 }
 
+/* Oculta scrollbar en Chrome/Safari */
+.profiles-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tarjetas de perfil optimizadas para touch */
 .profile-card {
     background: #1b1818;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 250px;
-    /* Ancho mínimo para cada tarjeta */
+    min-width: 85vw; /* Ocupa 85% del ancho de pantalla en móviles */
+    max-width: 300px;
     scroll-snap-align: start;
-    /* Alinea las tarjetas al inicio durante el desplazamiento */
-    height: 450px;
-    /* Altura fija para las tarjetas */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* Distribuye el espacio verticalmente */
+    flex: 0 0 auto; /* Evita que las tarjetas se estiren */
+    touch-action: manipulation; /* Mejora la respuesta táctil */
 }
 
-.profile-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
+/* Mejoras para la imagen del perfil */
 .profile-image {
-    width: 50%;
-    height: 150px;
-    border-radius: 250px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem;
+    display: block;
+    pointer-events: none; /* Mejora el rendimiento táctil */
 }
 
+/* Texto del perfil */
 .profile-name {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: #ffffff;
+    user-select: none; /* Evita selección accidental al desplazar */
 }
 
 .profile-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #c7c7c7;
     margin-bottom: 1rem;
+    width: 100% !important; /* Fuerza el ancho completo */
+    user-select: none; /* Evita selección accidental al desplazar */
 }
 
-.profile-details {
-    text-align: left;
-    font-size: 0.9rem;
-    color: #444;
-    margin-bottom: 1rem;
-}
-
-.profile-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #3498db;
-    color: #fff;
+/* Enlace "Ver más" */
+.view-more-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: rgb(20, 111, 196);
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    user-select: none; /* Evita selección accidental al desplazar */
 }
 
-.profile-link:hover {
-    background-color: #2980b9;
+/* Media queries para tablets */
+@media (min-width: 768px) {
+    .profile-card {
+        min-width: 300px;
+    }
 }
 
-
-/* Estilos generales */
-
-.contact-section {
-    width: 100%;
-    max-width: 600px;
-    padding: 2rem;
-}
-
-.contact-container {
-    background: #2d2d2d;
-    /* Fondo oscuro para el formulario */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    padding: 2rem;
-}
-
-.contact-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #3498db;
-    /* Azul claro para el título */
-    text-align: center;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.form-group label {
-    font-weight: bold;
-    color: #e0e0e0;
-    /* Texto claro */
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 0.5rem;
-    border: 1px solid #444;
-    /* Borde más claro */
-    border-radius: 5px;
-    background-color: #3d3d3d;
-    /* Fondo oscuro para el input */
-    color: #e0e0e0;
-    /* Texto claro */
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    resize: vertical;
-    /* Permitir redimensionar verticalmente */
-}
-
-.submit-button {
-    background-color: #3498db;
-    /* Azul claro para el botón */
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #2980b9;
-    /* Azul más oscuro al pasar el cursor */
-}
-
-.response-message {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #2ecc71;
-    /* Verde para mensajes de éxito */
-    display: none;
-    /* Oculto por defecto */
-    text-align: center;
-}
-
-.response-message.error {
-    color: #e74c3c;
-    /* Rojo para mensajes de error */
-}
-
-.button {
-    color: #08c521;
-    /* Rojo para mensajes de error */
-}
-
-
-/* Estilos de perfil */
-.controls{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    list-style-type: none;
-    margin-top: 2rem;
-}
-
-.controls .button{
-    cursor: pointer;
-    margin: 0.5rem;
-}
-
-.controls .button.active{
-    cursor: pointer;
-    background-color: var(--purple);
-    color: var(--white);
-}
-
-.portfolio .box-container{
-    display: -ms-grid;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
-    gap: 0.5rem;
-    padding: 2rem 0; 
-}
-
-.portfolio-item{
-    border-radius: 0.5rem;
-    height: 25rem;
-    overflow: hidden;
-    position: relative;
-}
-
-.portfolio-item img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.portfolio-item .content{
-    content: '';
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    height: 80%;
-    width: 80%;
-    border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-}
-
-.portfolio-item .content h4{
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--purple);
-    transform-origin: top;
-    -webkit-transform: translateY(-10rem);
-            transform: translateY(-10rem);
-    opacity: 0;
-    padding-bottom: 1rem;
-    -webkit-transition: all 0.4s linear;
-       -moz-transition: all 0.4s linear;
-         -o-transition: all 0.4s linear;
-            transition: all 0.4s linear;
-}
-
-.portfolio-item .content p{
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--white);
-    transform-origin: top;
-    -webkit-transform: translateY(-10rem);
-            transform: translateY(-10rem);
-    opacity: 0;
-    -webkit-transition: all 0.4s linear;
-       -moz-transition: all 0.4s linear;
-         -o-transition: all 0.4s linear;
-            transition: all 0.4s linear;
-}
-
-.portfolio-item .content .view-btn{
-    font-size: 2rem;
-    color: var(--purple);
-    transform-origin: top;
-    -webkit-transform: translateY(-10rem);
-            transform: translateY(-10rem);
-    opacity: 0;
-    -webkit-transition: all 0.4s linear;
-       -moz-transition: all 0.4s linear;
-         -o-transition: all 0.4s linear;
-            transition: all 0.4s linear;
-    border-radius: 5rem;
-    margin-top: 1.5rem;
-}
-
-.portfolio-item:hover .content{
-    -webkit-transform: scale(1);
-            transform: scale(1);
-}
-
-.portfolio-item:hover .content h4{
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
-}
-
-.portfolio-item:hover .content p{
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
-}
-
-.portfolio-item:hover .content .view-btn{
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
-}
-
-.portfolio-item:hover img{
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-}
-
-/*CSS3 Animation Effects for Magnific Popup*/
-
-/* start state */
-.mfp-newspaper  .mfp-with-anim {
-    opacity: 0;
-    -webkit-transition: all 0.2s ease-in-out; 
-            transition: all 0.2s ease-in-out; 
-
-    -webkit-transform: scale(0) rotate(500deg);
-            transform: scale(0) rotate(500deg);
-}
-.mfp-newspaper.mfp-bg {
-    opacity: 0;
-    -webkit-transition: all 0.2s ease-in-out; 
-            transition: all 0.2s ease-in-out; 
-}
-  
-/* animate in */
-.mfp-newspaper.mfp-ready .mfp-with-anim {
-    opacity: 1;
-    -webkit-transform: scale(1) rotate(0deg);
-            transform: scale(1) rotate(0deg);
-}
-.mfp-newspaper.mfp-ready.mfp-bg {
-    opacity: 0.8;
-}
-  
-/* animate out */
-.mfp-newspaper.mfp-removing .mfp-with-anim {
-    -webkit-transform: scale(0) rotate(500deg);
-            transform: scale(0) rotate(500deg);
-    opacity: 0;
-}
-.mfp-newspaper.mfp-removing.mfp-bg {
-    opacity: 0;
-}
-
-/* SELECTION */
-.verde {
-    color: rgb(9, 221, 9);
-    font-weight: bold;
-}
-.texto {
-    color: white;
-    font-size: 1.3rem;
-    text-align: left;
-    margin-top: 2rem;
+/* Media queries para desktop */
+@media (min-width: 1024px) {
+    .profiles-container {
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+    
+    .profile-card {
+        flex: 0 0 calc(33.333% - 2rem);
+        max-width: calc(33.333% - 2rem);
+    }
 }

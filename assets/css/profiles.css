@@ -1,4 +1,4 @@
-/* Estilos de galeria */
+/* Estilos de galería responsiva */
 .navbar {
     display: flex;
     justify-content: flex-start;
@@ -14,6 +14,7 @@
 
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
 }
@@ -26,38 +27,84 @@
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .description {
-    margin-left: 20px;
+    margin-left: 0;
     font-size: 24px;
+    text-align: center;
 }
 
+/* Contenedor de proyectos modificado para 2 columnas en móviles */
 .projects {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
+    gap: 15px;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .project-box {
-    width: 30%;
-    height: 200px;
-    border-radius: 10px; /* Bordes redondeados */
+    width: 100%;
+    height: 180px; /* Altura ajustada */
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    border: 1px solid #51D9B2; /* Borde de color */
+    border: 1px solid #51D9B2;
     justify-content: center;
-    transition: transform 0.3s ease; /* Transición para la animación de zoom */
+    transition: transform 0.3s ease;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .project-box img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s ease; /* Transición para la animación de zoom */
+    object-fit: cover; /* Cambiado a cover para mejor visualización */
+    transition: transform 0.3s ease;
 }
 
+/* Efecto hover solo para dispositivos que lo soportan */
+@media (hover: hover) {
+    .project-box:hover {
+        transform: scale(1.03);
+    }
+    .project-box:hover img {
+        transform: scale(1.1);
+    }
+}
 
+/* Media queries para tablets (3 columnas) */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+    
+    .description {
+        margin-left: 20px;
+        text-align: left;
+    }
+    
+    .projects {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablets */
+        gap: 20px;
+    }
+    
+    .project-box {
+        height: 200px;
+    }
+}
+
+/* Media queries para desktop (4 columnas) */
+@media (min-width: 1024px) {
+    .projects {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en desktop */
+    }
+    
+    .project-box {
+        height: 220px;
+    }
+}
