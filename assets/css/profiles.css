@@ -77,7 +77,7 @@
     }
 }
 
-/* Media queries para tablets (3 columnas) */
+/* Media queries para tablets (3 columnass) */
 @media (min-width: 768px) {
     .container {
         flex-direction: row;
